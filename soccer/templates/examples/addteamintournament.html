@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Add team in Tournament</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <form id="TypeValidation" class="form-horizontal" action="{% url 'AddTeamInTournament' %}"
+                enctype="multipart/form-data" method="POST">
+                                    {% csrf_token %}
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Add Team in Tournament</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Tournament</label>
+                            <select name="tournament_id">
+                                {% for tournament in tournaments %}
+                                    <option value="{{ tournament.id }}">{{ tournament.T_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div><br>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Team</label>
+                            <select name="team_id">
+                                {% for team in teams %}
+                                    <option value="{{ team.id }}">{{ team.Captain_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'basecaptain.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Create Team</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <form id="TypeValidation" class="form-horizontal" action="{% url 'createTeam' %}"
+                enctype="multipart/form-data" method="POST">
+                                    {% csrf_token %}
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Create Your Team</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 1</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer1"
+                                        placeholder="enter player 1 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 2</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer2"
+                                        placeholder="enter player 2 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 3</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer3"
+                                        placeholder="enter player 3 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 4</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer4"
+                                        placeholder="enter player 4 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 5</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer5"
+                                        placeholder="enter player 5 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 6</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer6"
+                                        placeholder="enter player 6 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 7</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer7"
+                                        placeholder="enter player 7 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 8</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer8"
+                                        placeholder="enter player 8 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 9</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer9"
+                                        placeholder="enter player 9 name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Team Player 10</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="teamplayer10"
+                                        placeholder="enter player 10 name here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+{% endblock %}

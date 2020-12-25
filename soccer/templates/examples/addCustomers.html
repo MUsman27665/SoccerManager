@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Add Customer Details</title>
+
+{% endblock %}
+<!-- <input class="form-control-file" type="file" name="image"  /> -->
+<!-- <input type="text" class="form-control"  name="subject" > -->
+
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}"  ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                <form class="form sign-up" action="{% url 'addCustomers' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Add Customer</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                           <div class="card-body ">
+                        <div class="row">
+                            <p style="color: red;">{{LoginError}}</p>
+                            <p style="color: red;">{{myform}}</p>
+                            <label class="col-sm-4 col-form-label">Customer Name</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" id="fname" name="customer_name" type="text"
+                                        placeholder="Customer Name" required="true" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Customer Address</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="customer_address"
+                                        placeholder="enter address here" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Customer Phone Number</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="tel" pattern="[+]{1}[0-9]{1}-[0-9]{3}-[0-9]{7}"  name="customer_phonenumber"
+                                        placeholder="+1-415-5552671" />
+                                </div>
+                            </div>
+
+                        </div>
+                               <div class="row">
+                            <label class="col-sm-4 col-form-label">Customer ZipCode</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="customer_zipcode"
+                                        placeholder="enter zipcode here" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+
+{% endblock %}

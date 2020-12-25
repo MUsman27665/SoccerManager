@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Add Tournament</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <form id="TypeValidation" class="form-horizontal" action="{% url 'addtournament' %}"
+                enctype="multipart/form-data" method="POST">
+                                    {% csrf_token %}
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Add Tournament</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Tournament Name</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="t_name"
+                                        placeholder="enter name here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Tournament Start Date</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="t_startdate"
+                                        placeholder="enter start date here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">Tournament End Date</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="t_enddate"
+                                        placeholder="enter end date here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">No of Teams</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="t_teams"
+                                        placeholder="enter no of teams here" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label">No of Matches</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="t_matches"
+                                        placeholder="enter no of matches here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+{% endblock %}

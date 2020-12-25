@@ -1,0 +1,58 @@
+{% extends 'baseadmin.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Matches In Tournament</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}" ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Matches In the Selected Tournament</h4>
+                            </div>
+                        </div>
+                        <table id="bootstrap-table" class="table">
+                    <thead>
+
+                        <th data-field="name" data-sortable="true" class="text-center">Match Team 1</th>
+                        <th data-field="username" data-sortable="true">Match Team 2</th>
+                        <th data-field="password" data-sortable="true">Date</th>
+                        <th data-field="tour" data-sortable="true">Tournament</th>
+                        <th data-field="result" data-sortable="true">Result</th>
+
+                    </thead>
+                    <tbody>
+                        {% for match in matches %}
+                            <tr>
+                                <td> {{ match.Match_team1 }} </td>
+                                <td> {{ match.Match_team2 }} </td>
+                                <td> {{ match.Date }} </td>
+                                <td> {{ match.tournament }} </td>
+                                <td> {{ match.Result }} </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}

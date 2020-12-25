@@ -1,0 +1,48 @@
+{% extends 'baseadmin.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Teams In Tournament</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}" ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Teams In the Selected Tournament</h4>
+                            </div>{{tournament}}
+                        </div>
+                        <div class="card-body ">
+                            {% for team in teams %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Team Captain Name :</label>
+                                        <label>{{team.Captain_name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends 'baseadmin.html' %}
+
+{% load static %}
+
+{% block title %}
+
+    <title>All Organizers</title>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card bootstrap-table">
+            <div class="card-body table-full-width">
+                <div class="toolbar">
+                    <h4>All Organizers </h4>
+                </div>
+                <form id="TypeValidation" class="form-horizontal" action="{% url 'addorganizer' %}">
+                    <button type="submit" class="btn btn-info">Add Organizer</button>
+                </form>
+                <table id="bootstrap-table" class="table">
+                    <thead>
+
+                        <th data-field="name" class="text-center">Name</th>
+                        <th data-field="username" data-sortable="true">Username</th>
+                        <th data-field="password" data-sortable="true">Password</th>
+                        <th data-field="email" data-sortable="true">Email</th>
+
+                    </thead>
+                    <tbody>
+                        {% for organizer in organizers %}
+                            <tr>
+                                <td> {{ organizer.first_name }} </td>
+                                <td> {{ organizer.username }} </td>
+                                <td> {{ organizer.password }} </td>
+                                <td> {{ organizer.email }} </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+
+var $table = $('#bootstrap-table');
+
+        function operateFormatter(value, row, index) {
+            return [
+
+                '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
+                '<i class="fa fa-edit"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action remove" href="javascript:void(0)">',
+                '<i class="fa fa-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+
+        $().ready(function() {
+        window.operateEvents = {
+            'click .view': function(e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click view icon, row: ', info);
+                console.log(info);
+            },
+            'click .edit': function(e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click edit icon, row: ', info);
+                console.log(info);
+            },
+            'click .remove': function(e, value, row, index) {
+                console.log(row);
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+            }
+        };
+
+        $table.bootstrapTable({
+            toolbar: ".toolbar",
+
+
+
+
+
+            pagination: true,
+
+            pageSize: 8,
+
+            pageList: [8, 10, 25, 50, 100],
+
+            formatShowingRows: function(pageFrom, pageTo, totalRows) {
+                //do nothing here, we don't want to show the text "showing x of y from..."
+            },
+            formatRecordsPerPage: function(pageNumber) {
+                return pageNumber + " rows visible";
+            },
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-th-list',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus-circle',
+                detailClose: 'fa fa-minus-circle'
+            }
+        });
+
+        //activate the tooltips after the data table is initialized
+        $('[rel="tooltip"]').tooltip();
+
+        $(window).resize(function() {
+            $table.bootstrapTable('resetView');
+        });
+
+
+    });
+
+</script>
+
+{% endblock %}
+

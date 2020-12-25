@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Customer Details</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+            <form id="TypeValidation" class="form-horizontal" action="{% url 'customerdetails' %}"
+                enctype="multipart/form-data" method="POST">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Add Customer Details</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Customer Name</label>
+                            <select name="customer_id">
+                                {% for customer in customers %}
+                                    <option value="{{ customer.id }}">{{ customer.customer_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="row">
+                            <p style="color: red;">{{LoginError}}</p>
+                            <p style="color: red;">{{myform}}</p>
+                            <label class="col-sm-2 col-form-label">Usage in Kwh</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input class="form-control" id="usage" name="usage" type="number"
+                                        placeholder="usage" required="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Previous Total Cost ($)</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="previous_total_cost"
+                                        placeholder="Previous Total Cost" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Years Since Proposal</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="years_since_proposal"
+                                        placeholder="Years Since Proposal" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Current Price per Kwh</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="price"
+                                        placeholder="Current Price pew KWh" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Show Advantages</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            },
+        });
+    }
+
+    $(document).ready(function () {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+{% endblock %}

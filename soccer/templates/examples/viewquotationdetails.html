@@ -1,0 +1,129 @@
+{% extends 'baseadmin.html' %}
+
+{% load static %}
+
+{% block title %}
+
+<title>Quotation Details</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}" ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Quotation Details</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <input type="text" disabled class="form-control"
+                                            name="customer_name" value="{{user.customer_name}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" disabled class="form-control"
+                                            name="address" value="{{user.customer_address}}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="email" disabled class="form-control" name="phoneno"
+                                            value="{{user.customer_phonenumber}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Total Usage in KWH</label>
+                                        <input type="text" disabled class="form-control" name="usage"
+                                            value="{{user.total_kwh}}">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Prevous Total Price</label>
+                                        <input type="number" disabled class="form-control" name="password"
+                                            value="{{user.previous_total_price}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Year Since Proposal</label>
+                                        <input type="number" disabled class="form-control" name="year_since"
+                                            value="{{user.years_since_proposal}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Given Estimate</label>
+                                        <input type="number" disabled class="form-control" name="estimate"
+                                            value="{{user.current_total}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Earlier Savings</label>
+                                        <input type="number" disabled class="form-control" name="pastsavings"
+                                            value="{{user.previous_savings}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Next 25 Years Savings</label>
+                                        <input type="number" disabled class="form-control" name="futuresavings"
+                                            value="{{user.future_savings}}">
+                                    </div>
+                                </div>
+                                 <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Customer Response</label>
+                                        <input type="text" disabled class="form-control" name="response"
+                                            value="{{user.customer_response}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Agent</label>
+                                        <input type="text" disabled class="form-control" name="agent"
+                                            value="{{user.agent}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}
