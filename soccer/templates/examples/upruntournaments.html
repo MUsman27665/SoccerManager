@@ -25,6 +25,8 @@
                         <th data-field="address" data-sortable="true">Start Date</th>
                         <th data-field="phonenumber" data-sortable="true">End Date</th>
                         <th data-field="zipcode" data-sortable="true">No of matches</th>
+                        <th data-field="request" data-sortable="true">Request</th>
+
                     </thead>
                     <tbody>
                         {% for uprun in upruntournaments %}
@@ -34,6 +36,9 @@
                                 <td> {{ uprun.Start_date }} </td>
                                 <td> {{ uprun.End_date }} </td>
                                 <td> {{ uprun.no_of_matches }} </td>
+                                <td>
+                                    <a href="{% url 'sendrequest' tournament.id %}">View Teams</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

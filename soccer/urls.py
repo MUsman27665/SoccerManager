@@ -41,5 +41,6 @@ urlpatterns = [
     path('upruntournaments', upruntournaments, name='upruntournaments'),
     path('allcaptain/', allcaptain, name='allcaptain'),
     path('createTeam/', createTeam, name='createTeam'),
+    path('sendrequest/', sendrequest, name='sendrequest'),
     path('addcaptain/', addcaptain, name='addcaptain'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

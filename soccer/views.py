@@ -104,6 +104,13 @@ def upruntournaments(request):
     return render(request, 'examples/upruntournaments.html', context)
 
 
+def sendrequest(request):
+    now = timezone.now()
+    upruntournaments = Tournament.objects.filter(Start_date__gte=now).order_by('Start_date') \
+                       | Tournament.objects.filter(End_date__gte=now).order_by('End_date')
+    context = {'upruntournaments': upruntournaments}
+    return render(request, 'examples/upruntournaments.html', context)
+
 def createTeam(request):
     if request.method == 'POST':
         Team.objects.create(Captain_name=User.objects.get(id=request.user.id),
@@ -147,22 +154,22 @@ def addOrganizer(request):
 
 def addcaptain(request):
     if request.method == 'POST':
-        User.objects.create(username=request.POST['username'],
+        User.objects.create(first_name=request.POST['name'],
+                            username=request.POST['username'],
                             password=request.POST['password'],
-                            is_organizer=False
-                            )
-        Captain.objects.create(
-            name=request.POST['name'],
-            address=request.POST['address'],
-            phone_number=request.POST['phoneno'],
-        )
+                            name=request.POST['name'],
+                            address=request.POST['address'],
+                            phone_number=request.POST['phoneno'],
+                            email=request.POST['cap_email'],
+                            user_type=3
+                                )
         return redirect('allcaptain')
     else:
         return render(request, 'examples/addcaptain.html')
 
 
 def allcaptain(request):
-    captains = User.objects.filter(is_organizer=False, is_superuser=False)
+    captains = User.objects.filter(user_type=3)
     context = {'captains': captains}
     return render(request, 'examples/captains.html', context)
 
