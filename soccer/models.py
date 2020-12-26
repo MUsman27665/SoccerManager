@@ -57,3 +57,17 @@ class Match(models.Model):
     def __str__(self):
         return self.Result
 
+
+class TournamentRequest(models.Model):
+    tournament_request_status_choice = [
+        ('Initiated', 'Initiated'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
+    ]
+    to_organizer = models.ForeignKey(User, on_delete=models.CASCADE, default=0, related_name="organizer")
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, default=0, related_name="TeamTwo")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, default=1, related_name='tournament')
+    status = models.CharField(choices=tournament_request_status_choice, default='Initiated', max_length=20)
+
+    def __str__(self):
+        return self.team.Captain_name.username

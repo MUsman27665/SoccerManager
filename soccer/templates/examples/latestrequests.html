@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-{% extends 'basecaptain.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}
 
-    <title>Up Coming Matches</title>
+    <title>Latest Request</title>
 
 {% endblock %}
 
@@ -16,28 +16,28 @@
         <div class="card bootstrap-table">
             <div class="card-body table-full-width">
                 <div class="toolbar">
-                    <h4>Up Coming Matches</h4>
+                    <h4>My Previous Requests</h4>
                 </div>
                 <table id="bootstrap-table" class="table">
                     <thead>
-                        <th data-field="name" class="text-center">Tournament Name</th>
-                        <th data-field="name" class="text-center">Tournament Owner</th>
-                        <th data-field="address" data-sortable="true">Start Date</th>
-                        <th data-field="phonenumber" data-sortable="true">End Date</th>
-                        <th data-field="zipcode" data-sortable="true">No of matches</th>
-                        <th data-field="request" data-sortable="true">Send Request</th>
+                        <th data-field="org" class="text-center">To Organizer</th>
+                        <th data-field="tour" class="text-center">Tournament</th>
+                        <th data-field="status" data-sortable="true">Status</th>
+                        <th data-field="approve" data-sortable="true">Approve</th>
+                        <th data-field="reject" data-sortable="true">Reject</th>
 
                     </thead>
                     <tbody>
-                        {% for uprun in upruntournaments %}
+                        {% for request in latestrequests %}
                             <tr>
-                                <td> {{ uprun.T_name }} </td>
-                                <td> {{ uprun.T_owner }} </td>
-                                <td> {{ uprun.Start_date }} </td>
-                                <td> {{ uprun.End_date }} </td>
-                                <td> {{ uprun.no_of_matches }} </td>
+                                <td> {{ request.team }} </td>
+                                <td> {{ request.tournament }} </td>
+                                <td> {{ request.status }} </td>
                                 <td>
-                                    <a href="{% url 'sendrequest' uprun.id %}">Send Request</a>
+                                    <a href="{% url 'approve' request.id %}">Approve</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'reject' request.id %}">Reject</a>
                                 </td>
                             </tr>
                         {% endfor %}
