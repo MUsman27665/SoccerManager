@@ -104,12 +104,44 @@ def upruntournaments(request):
     return render(request, 'examples/upruntournaments.html', context)
 
 
-def sendrequest(request):
-    now = timezone.now()
-    upruntournaments = Tournament.objects.filter(Start_date__gte=now).order_by('Start_date') \
-                       | Tournament.objects.filter(End_date__gte=now).order_by('End_date')
-    context = {'upruntournaments': upruntournaments}
-    return render(request, 'examples/upruntournaments.html', context)
+def sendrequest(request, tourid):
+    TournamentRequest.objects.create(
+            tournament=Tournament.objects.get(id=tourid),
+            to_organizer=User.objects.get(username=Tournament.objects.get(id=tourid).T_owner),
+            team=Team.objects.get(Captain_name=request.user)
+    )
+    return redirect('myrequests')
+
+
+def myrequests(request):
+    myrequests = TournamentRequest.objects.filter(team=Team.objects.get(Captain_name=request.user))
+    context = {
+        'myrequests': myrequests
+    }
+    return render(request, 'examples/myrequests.html', context)
+
+
+def latestrequests(request):
+    latestrequests = TournamentRequest.objects.filter(status="Initiated", to_organizer=request.user)
+    context = {
+        'latestrequests': latestrequests
+    }
+    return render(request, 'examples/latestrequests.html', context)
+
+
+def approvereq(request, reqid):
+    req = TournamentRequest.objects.get(id=reqid)
+    req.status = "Accepted"
+    req.save()
+    return redirect('latestrequests')
+
+
+def rejectreq(request, reqid):
+    req = TournamentRequest.objects.get(id=reqid)
+    req.status = "Rejected"
+    req.save()
+    return redirect('latestrequests')
+
 
 def createTeam(request):
     if request.method == 'POST':
