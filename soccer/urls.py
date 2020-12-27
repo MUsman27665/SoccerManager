@@ -46,5 +46,6 @@ urlpatterns = [
     path('approvereq/<int:reqid>', approvereq, name="approve"),
     path('rejectreq/<int:reqid>', rejectreq, name="reject"),
     path('latestrequests', latestrequests, name='latestrequests'),
+    path('updatematchresult/<int:match>/', updatematchresult, name='updatematch'),
     path('addcaptain/', addcaptain, name='addcaptain'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

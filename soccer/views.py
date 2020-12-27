@@ -132,6 +132,8 @@ def latestrequests(request):
 def approvereq(request, reqid):
     req = TournamentRequest.objects.get(id=reqid)
     req.status = "Accepted"
+    req.tournament.teams.add(req.team.id)
+    req.tournament.save()
     req.save()
     return redirect('latestrequests')
 
@@ -139,6 +141,8 @@ def approvereq(request, reqid):
 def rejectreq(request, reqid):
     req = TournamentRequest.objects.get(id=reqid)
     req.status = "Rejected"
+    req.tournament.teams.remove(req.team.id)
+    req.tournament.save()
     req.save()
     return redirect('latestrequests')
 
@@ -283,6 +287,17 @@ def matchesintournamentad(request, pk):
     context = {'matches': Match.objects.filter(tournament=tournament)}
     return render(request, 'examples/matchesintourad.html', context)
 
+
+def updatematchresult(request, match):
+    if request.method=='POST':
+        matchobj = Match.objects.get(id=match)
+        matchobj.Result = request.POST.get('result')
+        matchobj.save()
+        return redirect('matchesintournament', matchobj.tournament.id)
+    else:
+        matchobj = Match.objects.get(id=match)
+        context = {'match': matchobj}
+        return render(request, 'examples/updatematchresult.html', context)
 
 
 

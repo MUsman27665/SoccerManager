@@ -29,6 +29,7 @@
                         <th data-field="password" data-sortable="true">Date</th>
                         <th data-field="tour" data-sortable="true">Tournament</th>
                         <th data-field="result" data-sortable="true">Result</th>
+                        <th data-field="update" data-sortable="true"> Update Result</th>
 
                     </thead>
                     <tbody>
@@ -39,6 +40,9 @@
                                 <td> {{ match.Date }} </td>
                                 <td> {{ match.tournament }} </td>
                                 <td> {{ match.Result }} </td>
+                                <td>
+                                    <a href="{% url 'updatematch' match.id %}">Update Result</a>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
