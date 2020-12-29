@@ -30,8 +30,8 @@ def loggedin(request):
         context = {'total_orgs': total_orgs, 'total_tournaments': total_tournaments,
                    'total_matches': total_matches, 'total_teams': total_teams
                    }
-        if User.objects.filter(username=current_username,password=current_password).exists():
-            userobj = User.objects.get(username=current_username,password=current_password)
+        if User.objects.filter(username=current_username, password=current_password).exists():
+            userobj = User.objects.get(username=current_username, password=current_password)
             login(request, userobj)
             if userobj.is_superuser:
                 return render(request, 'examples/adminloggedin.html', context)
@@ -56,6 +56,41 @@ def loggedin(request):
             return render(request, 'examples/dashboard.html', context)
         else:
             return render(request, 'examples/captaindashboard.html', context)
+
+
+def admindashboard(request):
+    if request.method == 'POST':
+        current_username = request.POST.get('username')
+        current_password = request.POST.get('password')
+        total_orgs = User.objects.filter(user_type=2).count()
+        total_tournaments = Tournament.objects.all().count()
+        total_matches = Match.objects.all().count()
+        total_teams = Team.objects.all().count()
+        context = {'total_orgs': total_orgs, 'total_tournaments': total_tournaments,
+                   'total_matches': total_matches, 'total_teams': total_teams
+                   }
+        user = authenticate(username=current_username,
+                            password=current_password)
+        request.session['username'] = user.username
+        if user is not None:
+            login(request, user)
+            return render(request, 'examples/adminloggedin.html', context)
+        else:
+            context = {'LoginError': 'Please enter valid username or password'}
+            return render(request, 'examples/pages/adminlogin.html', context)
+    else:
+        total_orgs = User.objects.filter(user_type=2).count()
+        total_tournaments = Tournament.objects.all().count()
+        total_matches = Match.objects.all().count()
+        total_teams = Team.objects.all().count()
+        context = {'total_orgs': total_orgs, 'total_tournaments': total_tournaments,
+                   'total_matches': total_matches, 'total_teams': total_teams
+                   }
+        return render(request, 'examples/adminloggedin.html', context)
+
+
+def adminlogin(request):
+    return render(request, 'examples/pages/adminlogin.html')
 
 
 def upComingMatches(request):

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Soccer Manager</title>
+    <title>Fitness Direct Admin Login</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
@@ -26,17 +26,17 @@
     <div class="wrapper wrapper-full-page">
         <!-- Navbar -->
         <!-- End Navbar -->
-        <div class="full-page  section-image"
-            data-image="{% static '/assets/img/full-screen-image-2.jpg' %}" ;>
+        <div class="full-page section-image"
+            data-image="{% static '/assets/img/full-screen-image-2.jpg' %}">
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="content">
                 <div class="container">
                     <div class="col-md-6 col-sm-6 ml-auto mr-auto">
-                        <form class="form" method="POST" action="{% url 'loggedin' %}">
+                        <form class="form" method="POST" action="{% url 'admindashboard' %}">
                             {% csrf_token %}
                             <div class="card card-login card-hidden">
                                 <div class="card-header ">
-                                    <h3 class="header text-center">Login as Organizer/Captain</h3>
+                                    <h3 class="header text-center">Login as Admin</h3>
                                 </div>
                                 <div class="card-body ">
                                     <div class="card-body">
@@ -51,9 +51,9 @@
                                             <input type="password" placeholder="Password" name="password"
                                                 class="form-control">
                                         </div>
-                                    <a href="{% url 'adminlogin' %}">Login as admin</a>
                                     </div>
                                 </div>
+
                                 <div class="card-footer ml-auto mr-auto">
                                     <button type="submit" class="btn btn-warning btn-wd">Login</button>
                                 </div>
@@ -68,8 +68,11 @@
                 <nav>
                     <p class="copyright text-center">
                             ©
-                            <a href="https://www.linkedin.com/in/muhammadusman068/">Soccer Manager DEVELOPED BY Muhammad Usman </a>                        </p>
-                </nav>
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="https://esquall.com/">Esquall</a>,Fitness Direct WebApp DEVELOPED BY ESQUALL INC
+                        </p></nav>
             </div>
         </footer>
     </div>

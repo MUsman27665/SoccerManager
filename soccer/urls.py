@@ -21,6 +21,8 @@ from .views import *
 
 urlpatterns = [
     path('login', loginPage, name='loginPage'),
+    path('adminlogin', adminlogin, name="adminlogin"),
+    path('admindashboard', admindashboard, name='admindashboard'),
     path('loggedin/', loggedin, name='loggedin'),
     path('', upComingMatches, name="UpComingMatches"),
     path('matchresults', matchResults, name="matchresults"),
