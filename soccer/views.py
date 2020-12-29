@@ -102,8 +102,8 @@ def upComingMatches(request):
 
 def matchResults(request):
     now = timezone.now()
-    matcheResults = Match.objects.filter(Date__lte=now).order_by('-Date')
-    context = {'matcheResults':matcheResults}
+    matchResults = Match.objects.filter(Date__lte=now).order_by('-Date')
+    context = {'matchResults':matchResults}
     return render(request, 'examples/matchResults.html', context)
 
 

@@ -26,12 +26,12 @@
                         <th data-field="zipcode" data-sortable="true">Result</th>
                     </thead>
                     <tbody>
-                        {% for user in upComingmatches %}
+                        {% for match in matchResults %}
                             <tr>
-                                <td> {{ user.Match_team1 }} </td>
-                                <td> {{ user.Match_team2 }} </td>
-                                <td> {{ user.Date }} </td>
-                                <td> {{ user.Result }} </td>
+                                <td> {{ match.Match_team1 }} </td>
+                                <td> {{ match.Match_team2 }} </td>
+                                <td> {{ match.Date }} </td>
+                                <td> {{ match.Result }} </td>
                             </tr>
                         {% endfor %}
                     </tbody>
