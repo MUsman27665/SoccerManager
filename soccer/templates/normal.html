@@ -21,7 +21,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-image="{% static 'assets/img/full-screen-image-2.jpg' %}">
+        <div class="sidebar" data-image="{% static 'assets/img/full-screen-image-3.jpg' %}">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -36,20 +36,14 @@
                 <ul class="nav">
                     <li class="nav-item ">
                         <a class="nav-link" href="{% url 'UpComingMatches' %}">
-                            <i class="nc-icon nc-puzzle-10"></i>
+                            <i class="nc-icon nc-audio-92"></i>
                             <span class="sidebar-normal">Up Coming Matches</span>
                         </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="{% url 'matchresults' %}">
-                            <i class="nc-icon nc-puzzle-10"></i>
+                            <i class="nc-icon nc-attach-87"></i>
                             <span class="sidebar-normal">Match Results</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'loginPage' %}">
-                            <i class="nc-icon nc-puzzle-10"></i>
-                            <span class="sidebar-normal">Login</span>
                         </a>
                     </li>
                 </ul>
@@ -75,12 +69,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="nav navbar-nav mr-auto">
-                            <form class="navbar-form navbar-left navbar-search-form" role="search">
-                                <div class="input-group">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <input type="text" value="" class="form-control" placeholder="Search...">
-                                </div>
-                            </form>
+                            <li class="nav-item ">
+                                <a class="nav-link" style="margin-left:730px" href="{% url 'loginPage' %}">
+                                    <span class="sidebar-normal">Login</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
