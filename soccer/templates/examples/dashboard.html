@@ -92,6 +92,36 @@
     </div>
 </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card bootstrap-table">
+            <div class="card-body table-full-width">
+                <div class="toolbar">
+                    <h4>My Tournaments</h4>
+                </div>
+                 <div class="row">
+                     {% for tournament in my_tournaments %}
+
+                    <div class="card col-md-3" style="width: 18rem;">
+                      <h2 class="card-title">{{tournament.T_name}}</h2>
+                      <div class="card-body">
+                        <h5 class="card-title">Start Date: {{tournament.Start_date}}</h5>
+                          <h5 class="card-title">End Date: {{tournament.End_date}}</h5>
+                          <h5 class="card-title">No of Matches: {{tournament.no_of_matches}}</h5>
+                          <h5 class="card-title">No of Teams: {{tournament.no_of_teams}}</h5>
+                          All Teams:
+                          {% for team in tournament.teams.all %}
+                                <h5 class="card-title">Team Captain Name: {{team}}</h5>
+                          {% endfor %}
+                  </div>
+                </div>
+
+                        {% endfor %}
+                     </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 </body>

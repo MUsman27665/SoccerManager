@@ -17,6 +17,11 @@ class User(AbstractUser):
     email = models.EmailField(default="example@gmail.com")
 
 
+class Gallery(models.Model):
+    description = models.CharField(max_length=500, default="")
+    image = models.ImageField(upload_to='gallery', null=True, blank=True)
+
+
 class Team(models.Model):
     Captain_name = models.ForeignKey(User, on_delete=models.CASCADE, max_length=100, default="")
     team_player_1 = models.CharField(max_length=100, default="")

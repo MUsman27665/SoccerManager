@@ -27,8 +27,9 @@ def loggedin(request):
         total_tournaments = Tournament.objects.all().count()
         total_matches = Match.objects.all().count()
         total_teams = Team.objects.all().count()
+        my_tournaments = Tournament.objects.filter(T_owner=request.user)
         context = {'total_orgs': total_orgs, 'total_tournaments': total_tournaments,
-                   'total_matches': total_matches, 'total_teams': total_teams
+                   'total_matches': total_matches, 'total_teams': total_teams, 'my_tournaments':my_tournaments
                    }
         if User.objects.filter(username=current_username, password=current_password).exists():
             userobj = User.objects.get(username=current_username, password=current_password)
@@ -47,8 +48,9 @@ def loggedin(request):
         total_tournaments = Tournament.objects.all().count()
         total_matches = Match.objects.all().count()
         total_teams = Team.objects.all().count()
+        my_tournaments = Tournament.objects.filter(T_owner=request.user)
         context = {'total_orgs': total_orgs, 'total_tournaments': total_tournaments,
-                   'total_matches': total_matches, 'total_teams': total_teams
+                   'total_matches': total_matches, 'total_teams': total_teams, 'my_tournaments':my_tournaments
                    }
         if request.user.is_superuser:
             return render(request, 'examples/adminloggedin.html', context)
@@ -245,6 +247,11 @@ def allcaptain(request):
     return render(request, 'examples/captains.html', context)
 
 
+def GalleryView(request):
+    images = Gallery.objects.all()
+    context = {'images': images}
+    return render(request, 'examples/gallery.html', context)
+
 def addtournament(request):
     if request.method == 'POST':
         Tournament.objects.create(T_name=request.POST['t_name'],
@@ -321,6 +328,17 @@ def matchesintournamentad(request, pk):
     tournament = Tournament.objects.get(id=pk)
     context = {'matches': Match.objects.filter(tournament=tournament)}
     return render(request, 'examples/matchesintourad.html', context)
+
+
+def addGallery(request):
+    if request.method == 'POST':
+        Gallery.objects.create(
+            description=request.POST['description'],
+            image=request.FILES['image'],
+        )
+        return redirect('admindashboard')
+    else:
+        return render(request, 'examples/addgallery.html')
 
 
 def updatematchresult(request, match):
