@@ -4,7 +4,7 @@
 
 {% block title %}
 
-    <title>All Organizers</title>
+    <title>Organizer Tournaments</title>
 
 {% endblock %}
 
@@ -16,20 +16,22 @@
         <div class="card bootstrap-table">
             <div class="card-body table-full-width">
                 <div class="toolbar">
-                    <h4>All Organizers </h4>
+                    <h4>{{ orguser.username }} Tournaments</h4>
                 </div>
-                        {% for organizer in organizers %}
+                        {% for tournament in tournaments %}
                         <div class="column">
                             <div class="card">
-                                <img src="{{org.image.url}}" alt="John" style="width:100%;height:50%">
+                                <img src="{{tournament.image.url}}" alt="John" style="width:100%;height:50%">
                                 <div class="container">
-                                    <h2>{{ organizer.first_name }}</h2>
-                                    <p class="title">{{ organizer.username }}</p>
-                                    <p>{{ organizer.email }}</p>
-                                    <form id="TypeValidation" class="form-horizontal" action="{% url 'orgtournaments' organizer.id %}"
-                enctype="multipart/form-data" method="POST">
+                                    <h2>{{ tournament.T_name }}</h2>
+                                    <p class="title">Start Date: {{ tournament.Start_date }}</p>
+                                    <p>End Date: {{ tournament.End_date }}</p>
+                                    <p>No of Matches: {{ tournament.no_of_matches }}</p>
+                                    <p>No of Teams: {{ tournament.no_of_teams }}</p>
+                                    <form id="TypeValidation" class="form-horizontal" action="{% url 'teamsintournamentad' tournament.id %}"
+                                        enctype="multipart/form-data" method="POST">
                                     {% csrf_token %}
-                                    <p><button class="button">Tournaments</button></p>
+                                    <p><button class="button">Teams</button></p>
                                     </form>
                               </div>
                             </div>

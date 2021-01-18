@@ -116,7 +116,7 @@ def orgLogin(request):
 
 
 def allOrganizers(request):
-    organizers = User.objects.filter(is_superuser=False)
+    organizers = User.objects.filter(is_superuser=False, user_type=2)
     context = {'organizers': organizers}
     return render(request, 'examples/organizers.html', context)
 
@@ -127,10 +127,35 @@ def allTournaments(request):
     return render(request, 'examples/tournaments.html', context)
 
 
+def orgtournaments(request, orgid):
+    tournaments = Tournament.objects.filter(T_owner=User.objects.get(id=orgid))
+    orguser = User.objects.get(id=orgid)
+    context = {'tournaments': tournaments, 'orguser':orguser}
+    return render(request, 'examples/orgtournaments.html', context)
+
+def contactus(request):
+    tournaments = Tournament.objects.all()
+    context = {'tournaments': tournaments}
+    return render(request, 'examples/contactus.html', context)
+
+
+def aboutus(request):
+    tournaments = Tournament.objects.all()
+    context = {'tournaments': tournaments}
+    return render(request, 'examples/aboutus.html', context)
+
+
 def allTeams(request):
     teams = Team.objects.all()
     context = {'teams': teams}
     return render(request, 'examples/teams.html', context)
+
+
+def tourTeams(request, tourid):
+    teams = Team.objects.all()
+    context = {'teams': teams}
+    return render(request, 'examples/teams.html', context)
+
 
 
 def upruntournaments(request):
@@ -316,6 +341,12 @@ def teamsintournamentad(request, pk):
     tournament = Tournament.objects.get(id=pk)
     context = {'teams': tournament.teams.all()}
     return render(request, 'examples/teamsintournamentad.html', context)
+
+
+def playersinteam(request, pk):
+    team = Team.objects.get(id=pk)
+    context = {'team': team}
+    return render(request, 'examples/playersinteam.html', context)
 
 
 def matchesintournament(request, pk):

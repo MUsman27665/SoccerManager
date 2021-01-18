@@ -16,20 +16,24 @@
         <div class="card bootstrap-table">
             <div class="card-body table-full-width">
                 <div class="toolbar">
-                    <h4>Our Gallery</h4>
+<!--                    <h4>Our Gallery</h4>-->
                 </div>
+                <div class="container">
                  <div class="row">
                         {% for image in images %}
+                    <div class="col-md-4">
+                        <div class="card">
+                              <img src="{{image.image.url}}" class="img-responsive card-img-top rounded" style="height:150px; object-fit:cover; width:100%">
+                  <div class="card-body mt-2" style="background-color:#FFA534;">
+                       <p class="my-0 card-text">{{image.description}}</p>
 
-                <div class="card col-md-3" style="width: 18rem;">
-                  <img src="{{image.image.url}}" class="img-responsive rounded" style="height:120px; width:120px">
-                  <div class="card-body">
-                    <h5 class="card-title">{{image.description}}</h5>
                   </div>
                 </div>
-
+                    </div>
                         {% endfor %}
-                     </div>
+                 </div>
+                </div>
+
             </div>
         </div>
     </div>

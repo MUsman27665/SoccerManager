@@ -27,7 +27,7 @@
         <!-- Navbar -->
         <!-- End Navbar -->
         <div class="full-page  section-image"
-            data-image="{% static '/assets/img/full-screen-image-2.jpg' %}" ;>
+            data-image="{% static '/assets/img/login.jpg' %}" ;>
             <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
             <div class="content">
                 <div class="container">
@@ -35,8 +35,12 @@
                         <form class="form" method="POST" action="{% url 'loggedin' %}">
                             {% csrf_token %}
                             <div class="card card-login card-hidden">
-                                <div class="card-header ">
-                                    <h3 class="header text-center">Login as Organizer/Captain</h3>
+<!--                                <div class="card-header ">-->
+<!--                                    <h3 class="header text-center">Login as Organizer/Captain</h3>-->
+<!--                                    <i class="fa fa-user-circle" aria-hidden="true"></i> &lt;!&ndash; login icon&ndash;&gt;-->
+<!--                                /</div>-->
+                                <div class="card-header " style="text-align:center">
+                                    <i class="fa fa-user-circle fa-4x" style="color:#FFA534; aria-hidden="true"></i> <!-- login icon-->
                                 </div>
                                 <div class="card-body ">
                                     <div class="card-body">
@@ -68,7 +72,8 @@
                 <nav>
                     <p class="copyright text-center">
                             ©
-                            <a href="https://www.linkedin.com/in/muhammadusman068/">Soccer Manager DEVELOPED BY Muhammad Usman </a>                        </p>
+                           <a href="https://www.linkedin.com/in/murtaza-anwar">Soccer Manager DEVELOPED BY Murtaza Anwar </a>
+                    </p>
                 </nav>
             </div>
         </footer>

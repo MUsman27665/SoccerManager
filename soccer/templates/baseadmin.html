@@ -14,6 +14,7 @@
     <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/light-bootstrap-dashboard.css' %}" rel="stylesheet" />
     <link href="{% static 'assets/css/demo.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/normal.css' %}" rel="stylesheet" />
 
     {% block title %}
 
@@ -22,7 +23,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-image="{% static 'assets/img/full-screen-image-2.jpg' %}">
+        <div class="sidebar" data-image="{% static 'assets/img/admin.jpg' %}">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -48,9 +49,9 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'allTournaments' %}">
+                        <a class="nav-link" href="{% url 'addorganizer' %}">
                             <i class="nc-icon nc-light-3"></i>
-                            <span class="sidebar-normal">All Tournaments</span>
+                            <span class="sidebar-normal">Add Organizer</span>
                         </a>
                     </li>
                      <li class="nav-item ">
@@ -85,7 +86,7 @@
                                 <i class="fa fa-navicon visible-on-sidebar-mini"></i>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo"> Admin Dashboard </a>
+                        <a class="navbar-brand" href="#pablo"> {{request.user.username}} Dashboard </a>
                     </div>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
@@ -130,8 +131,8 @@
                     <nav>
                         <p class="copyright text-center">
                             ©
-                            <a href="https://www.linkedin.com/in/muhammadusman068/">Soccer Manager DEVELOPED BY Muhammad Usman </a>
-                        </p>
+                            <a href="https://www.linkedin.com/in/murtaza-anwar">Soccer Manager DEVELOPED BY Murtaza Anwar </a>
+                         </p>
                     </nav>
                 </div>
             </footer>
